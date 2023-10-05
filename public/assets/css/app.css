@@ -1,0 +1,61 @@
+/*.dlabnav {*/
+/*    background-color: #546EE3;*/
+/*}*/
+/*.header {*/
+/*    background: #546EE3;*/
+/*}*/
+.picker-legenda {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+}
+
+[data-sidebar-position="fixed"][data-layout="vertical"] .nav-header {
+    border-right: none;
+}
+
+.nav-header {
+    height: 5.4rem;
+    width: 17.5rem;
+}
+
+.header {
+    height: 5.5rem;
+}
+
+.header .header-content {
+    padding-left: 5rem;
+}
+
+.dlabnav {
+    width: 17.5rem;
+    top: 5.4rem;
+}
+
+.header-right .notification_dropdown .nav-link .badge {
+    line-height: 1rem;
+    right: 0rem;
+    height: 1.6rem;
+    width: 1.5rem;
+}
+
+.nav-header .brand-title h2, .nav-header .brand-title .h2 {
+    font-size: 1.5rem;
+}
+
+.table thead th {
+    text-transform: none;
+}
+
+.card-title {
+    text-transform: none;
+}
+
+@media only screen and (max-width: 47.9375rem) {
+    .nav-header {
+        top: 0;
+        background: #fff !important;
+        width: auto !important;
+    }
+
+}
