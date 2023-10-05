@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Libraries;
+
 
 use CodeIgniter\Database\Config;
 use Config\Database;

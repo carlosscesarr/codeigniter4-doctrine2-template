@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Libraries;
 
 class Slug
 {
