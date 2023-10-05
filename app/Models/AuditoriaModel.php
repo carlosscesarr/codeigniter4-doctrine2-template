@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CI_Model;
 
-class Auditoria extends CI_Model
+class AuditoriaModel extends CI_Model
 {
 
 	var $REVTYPE = [0 => "CADASTRO", 1 => "ALTERACAO", 2 => "EXCLUSAO"];
