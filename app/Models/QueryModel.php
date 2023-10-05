@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Query extends Model
+class QueryModel extends Model
 {
 	public function gerarResultadoSQL($sql = "", $showSQL = false)
 	{

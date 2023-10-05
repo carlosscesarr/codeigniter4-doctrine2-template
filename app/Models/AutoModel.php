@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CI_Model;
 
-class Auto extends CI_Model
+class AutoModel extends CI_Model
 {
 	public function gerarSelect2($table, $param = [], $fields = [], $id = "", $name = "", $value = [], $title = "Digite uma Opção", $multiple = false, $order = "id desc", $class = "form-control", $attr = "")
 	{
