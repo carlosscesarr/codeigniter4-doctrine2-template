@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\Doctrine;
+use App\Libraries\Pagination;
 use App\Models\AuditoriaModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -115,7 +116,7 @@ abstract class BaseController extends Controller
 		view('auditoria/auditoria_view', $data);
 	}
 	
-	public function getListagemIndex4($pg = -1, $Entity, $where = [], $order = ['id' => 'desc'], $show_sql = false, $metodoPaginacao = '', $intervaloPaginacao = 10)
+	public function getListagemIndex4($Entity, $pg = -1, $where = [], $order = ['id' => 'desc'], $show_sql = false, $metodoPaginacao = '', $intervaloPaginacao = 10)
 	{
 		
 		if ($pg > 0) {
@@ -347,6 +348,7 @@ abstract class BaseController extends Controller
 		$total_registros = $rs_cont->getQuery()->getSingleScalarResult();
 		
 		if ($total_registros > 0) {
+			
 			foreach ($order as $key => $val) {
 				$rs->addOrderBy("en.$key", $val);
 			}
@@ -360,34 +362,18 @@ abstract class BaseController extends Controller
 			
 			if ($show_sql) {
 				$sql = $query->getSQL();
-				echo "SQL Classecon: " . $sql;
+				echo "SQL: " . $sql;
 			}
 			
 			$lista = $query->getResult();
 		}
 		
-		$config['base_url'] = '/' . strtolower($Entity) . ($metodoPaginacao == '' ? '/index' : $metodoPaginacao);
-		// $config['total_rows'] = $total_registros;
-		// $config['per_page'] = $por_pagaina;
-		// $config['num_links'] = $por_pagaina - 2;
-		//
-		// $config['cur_tag_open'] = "<li class=\"active\"><span>";
-		// $config['cur_tag_close'] = "</span></li>";
-		// $config['num_tag_open'] = '<li>';
-		// $config['num_tag_close'] = '</li>';
-		// $config['next_tag_open'] = '<li>';
-		// $config['next_tag_close'] = '</li>';
-		// $config['prev_tag_open'] = '<li>';
-		// $config['prev_tag_close'] = '</li>';
-		// $config['first_link'] = 'Primeira';
-		// $config['first_tag_open'] = '<li>';
-		// $config['first_tag_close'] = '</li>';
-		// $config['last_link'] = 'Última';
-		// $config['last_tag_open'] = '<li>';
-		// $config['last_tag_close'] = '</li>';
-		// $this->pagination->initialize($config);
+		$baseUrl = '/' . strtolower($Entity) . ($metodoPaginacao == '' ? '/index' : $metodoPaginacao);
 		
-		return ['lista' => $lista, 'paginacao' => 1, 'total_registros' => $total_registros];
+		$paginacao = new Pagination($pg, $total_registros, $por_pagaina, 5, $baseUrl);
+		$links = $paginacao->criarLinks();
+		
+		return ['lista' => $lista, 'paginacao' => $links, 'total_registros' => $total_registros];
 	}
 	
 	public function filtroPost($classe, &$post)
@@ -541,14 +527,6 @@ abstract class BaseController extends Controller
 		$this->doctrine->em->getConnection()->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
 	}
 	
-	public function verificaPermissao()
-	{
-		if (!isset($this->dados_usuario_logado['permissao_acesso']) || !$this->dados_usuario_logado['permissao_acesso']) {
-			echo "<script type='text/javascript'>top.location = '" . base_url() . "login/sair';</script>";
-			exit;
-		}
-	}
-	
 	public function enviarEmailAnexo($email_remetente = "", $nome_remetente = "", $para = "", $assunto = "", $mensagem = "", $anexos = [])
 	{
 		$this->load->library('email');
@@ -570,5 +548,13 @@ abstract class BaseController extends Controller
 			return false;
 		}
 		return $envio;
+	}
+	
+	public function verificaPermissao()
+	{
+		if (!isset($this->dadosUsuarioLogado['permissao_acesso']) || !$this->dadosUsuarioLogado['permissao_acesso']) {
+			echo "<script type='text/javascript'>top.location = '" . base_url('auth/logout') . "';</script>";
+			exit;
+		}
 	}
 }
