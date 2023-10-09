@@ -43,10 +43,10 @@ class Pagination
 		$paginaInicial = max(0, $paginaAtual - $meio);
 		
 		// Limita a página final
-		$paginaFinal = min($numPaginas, $paginaInicial + $this->quantidadeLinksExibir - 1);
+		$paginaFinal = min($numPaginas, $paginaInicial + $this->quantidadeLinksExibir);
 		
 		// Ajusta a página inicial se a página final for a última página
-		$paginaInicial = max(0, $paginaFinal - $this->quantidadeLinksExibir + 1);
+		$paginaInicial = max(0, $paginaFinal - $this->quantidadeLinksExibir);
 		
 		$links = '<nav aria-label="Page navigation example">';
 		$links .= '<ul class="pagination">';
@@ -64,7 +64,7 @@ class Pagination
 		}
 		
 		// Links para páginas
-		for ($i = $paginaInicial; $i <= $paginaFinal; $i++) {
+		for ($i = $paginaInicial; $i < $paginaFinal; $i++) {
 			if ($i == $paginaAtual) {
 				$links .= '<li class="page-item active"><a  class="page-link" href="#">' . ($i + 1) . '</a></li>';
 			} else {
