@@ -116,7 +116,7 @@
 	<div class="content-body">
 		<!-- row -->
 		<div class="container-fluid" id="container">
-			<?= $this->renderSection('content') ?>
+			<?php //= $this->renderSection('content') ?>
 		</div>
 	</div>
 	<!--**********************************
@@ -153,51 +153,40 @@
 <!--**********************************
 	Scripts
 ***********************************-->
-<!-- Required vendors -->
-<script src="<?= base_url() ?>xhtml/vendor/global/global.min.js"></script>
-<!--<script src="--><?php //= base_url() ?><!--assets/js/jquery.min.js"></script>-->
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/chart.js/Chart.bundle.min.js"></script>-->
-<script src="<?= base_url() ?>xhtml/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-<script src="<?= base_url() ?>xhtml/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-<script src="<?= base_url() ?>xhtml/vendor/select2/js/select2.full.min.js"></script>
+ <!-- Required vendors -->
+    <script src="<?=base_url()?>xhtml/vendor/global/global.min.js"></script>
+	<script src="<?=base_url()?>xhtml/vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="<?=base_url()?>xhtml/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="<?=base_url()?>xhtml/vendor/select2/js/select2.full.min.js"></script>
+	<script src="<?=base_url()?>xhtml/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	
+	<!-- Apex Chart -->
+	<script src="<?=base_url()?>xhtml/vendor/apexchart/apexchart.js"></script>
+	
+	<script src="<?=base_url()?>xhtml/vendor/chart.js/Chart.bundle.min.js"></script>
+	
+	<!-- Chart piety plugin files -->
+    <script src="<?=base_url()?>xhtml/vendor/peity/jquery.peity.min.js"></script>
+	<!-- sample Dashboard 1 -->
+	<!-- <script src="<?=base_url()?>xhtml/js/dashboard/dashboard-1.js"></script> -->
+	
+	<script src="<?=base_url()?>xhtml/vendor/owl-carousel/owl.carousel.js"></script>
+	
+    <script src="<?=base_url()?>xhtml/js/custom.js"></script>
+	<script src="<?=base_url()?>xhtml/js/dlabnav-init.js?<?=date("Ymdhis")?>"></script>
 
-<!-- Apex Chart -->
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/apexchart/apexchart.js"></script>-->
+    <!-- jquery.inputmask -->
+    <script src="<?=base_url()?>assets/js/jquery.inputmask.min.js" type="text/javascript"></script>
 
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/chart.js/Chart.bundle.min.js"></script>-->
-
-<!-- Chart piety plugin files -->
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/peity/jquery.peity.min.js"></script>-->
-<!-- sample Dashboard 1 -->
-<!-- <script src="<?= base_url() ?>xhtml/js/dashboard/dashboard-1.js"></script> -->
-
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/owl-carousel/owl.carousel.js"></script>-->
-
-<script src="<?= base_url() ?>xhtml/js/custom.js"></script>
-<script src="<?= base_url() ?>xhtml/js/dlabnav-init.js"></script>
-
-<!-- Toastr -->
-<script src="<?= base_url() ?>xhtml/vendor/toastr/js/toastr.min.js"></script>
-
-<!-- jquery.inputmask -->
-<!--<script src="-->
-<?php //= base_url() ?><!--public/assets/js/jquery.inputmask.min.js" type="text/javascript"></script>-->
-
-<!-- CkEditor -->
-<!--<script src="--><?php //= base_url() ?><!--xhtml/vendor/ckeditor/ckeditor.js"></script>-->
-
-<script src="<?= base_url() ?>assets/js/jquery.form.min.js"></script>
-<script src="<?= base_url() ?>public/assets/js/index.js"></script>
-<?= $this->renderSection('scripts') ?>
-<!--<script src="--><?php //= base_url() ?><!--public/assets/js/jquery.maskMoney.min.js"></script>-->
-
-<!--<script src="--><?php //= base_url() ?><!--public/assets/js/qrcode.min.js"></script>-->
-
-<!-- Mapa -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1XWGPu2IBRJpsxwvRUpqLyLW7QmqplPg&libraries=drawing"-->
-<!--        async defer></script>-->
-<script>
-    $("select").select2();
-</script>
+	<!-- Toastr -->
+    <script src="<?=base_url()?>xhtml/vendor/toastr/js/toastr.min.js"></script>
+    <script src="<?=base_url()?>xhtml/vendor/datatables/js/jquery.dataTables.min.js"></script>
+		
+	<script src="<?=base_url()?>assets/js/jquery.form.min.js"></script>
+    <script src="<?=base_url()?>assets/js/jquery.maskMoney.min.js"></script>
+    <script src="<?=base_url()?>assets/js/index.js"></script>
+    <script type="text/javascript">
+    	abrir_div('<?=base_url()?>usuario')
+    </script>
 </body>
 </html>

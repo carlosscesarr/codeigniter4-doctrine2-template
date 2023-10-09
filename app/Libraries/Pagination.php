@@ -43,47 +43,49 @@ class Pagination
 		$paginaInicial = max(0, $paginaAtual - $meio);
 		
 		// Limita a página final
-		$paginaFinal = min($numPaginas, $paginaInicial + $this->quantidadeLinksExibir - 1);
+		$paginaFinal = min($numPaginas, $paginaInicial + $this->quantidadeLinksExibir);
 		
 		// Ajusta a página inicial se a página final for a última página
-		$paginaInicial = max(0, $paginaFinal - $this->quantidadeLinksExibir + 1);
+		$paginaInicial = max(0, $paginaFinal - $this->quantidadeLinksExibir);
 		
-		$links = '<nav aria-label="Page navigation example">';
-		$links .= '<ul class="pagination">';
+		$links = '<nav id="paginacao">';
+		$links .= '<ul class="pagination pagination-sm pagination-gutter">';
 		
 		// Link para a primeira página
 		if ($paginaAtual > 0) {
 			$baseUrl = $this->baseUrl != '' ? $this->baseUrl : '?pagina=1';
-			$links .= '<li class="page-item"><a class="page-link" href="'.$baseUrl.'">Primeira</a></li>';
+			$links .= '<li class="page-item page-indicator"><a class="page-link" href="'.$baseUrl.'">Primeira</a></li>';
 		}
 		
 		// Link para página anterior
 		if ($paginaAtual > 0) {
 			$baseUrl = $this->baseUrl != '' ? $this->baseUrl : "?pagina=". ($this->paginaAtual - 1);
-			$links .= '<li class="page-item"><a class="page-link" href="'.$baseUrl.'">Anterior</a></li>';
+			$links .= '<li class="page-item page-indicator">
+				<a class="page-link" href="'.$baseUrl.'"><i class="la la-angle-left"></i></a></li>';
 		}
 		
 		// Links para páginas
-		for ($i = $paginaInicial; $i <= $paginaFinal; $i++) {
+		for ($i = $paginaInicial; $i < $paginaFinal; $i++) {
 			if ($i == $paginaAtual) {
 				$links .= '<li class="page-item active"><a  class="page-link" href="#">' . ($i + 1) . '</a></li>';
 			} else {
-				$baseUrl = $this->baseUrl != '' ? $this->baseUrl . '/'.$i: "?pagina=" . $i;
+				$baseUrl = $this->baseUrl != '' ? $this->baseUrl . '/'.$i : "?pagina=" . $i;
 				$links .= '<li class="page-item"><a class="page-link" href="'.$baseUrl.'">' . ($i + 1). '</a></li>';
 			}
 		}
 		
 		// Link para próxima página
-		if ($this->paginaAtual < $numPaginas) {
-			$baseUrl = $this->baseUrl != '' ? $this->baseUrl : "?pagina=" . ($this->paginaAtual + 1);
-			$links .= '<li class="page-item"><a class="page-link" href="'.$baseUrl.'">Próxima</a></li>';
+		if ($paginaAtual < $numPaginas) {
+			$baseUrl = $this->baseUrl != '' ? $this->baseUrl : "?pagina=" . ($paginaAtual + 1);
+			$links .= '<li class="page-item page-indicator">
+				<a class="page-link" href="'.$baseUrl.'"><i class="la la-angle-right"></i></a></li>';
 		}
 		
 		// Link para a última página
-		if ($this->paginaAtual < $numPaginas) {
+		if ($paginaAtual < $numPaginas) {
 			$baseUrl = $this->baseUrl != '' ? $this->baseUrl : "?pagina=" . $numPaginas;
 
-			$links .= '<li class="page-item"><a class="page-link" href="'.$baseUrl.'">Última</a></li>';
+			$links .= '<li class="page-item"><a class="btn btn-xs btn-primary" href="'.$baseUrl.'">Última</a></li>';
 		}
 		
 		$links .= '</ul></nav>';
