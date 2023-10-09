@@ -129,16 +129,16 @@ abstract class BaseController extends Controller
 			$this->showSQL();
 		}
 		
-		eval("\$classe = new \App\Entity\\" . $Entity . ";");
+		eval("\$classe = new \App\Models\Entity\\" . $Entity . ";");
 		$meta = $this->doctrine->em->getClassMetadata(get_class($classe));
 		$chavePrimaria = $meta->identifier[0];
 		
 		$por_pagaina = $intervaloPaginacao;
 		
-		$rs_cont = $this->doctrine->em->getRepository("\App\Entity\\" . $Entity)->createQueryBuilder('en');
+		$rs_cont = $this->doctrine->em->getRepository("\App\Models\Entity\\" . $Entity)->createQueryBuilder('en');
 		$rs_cont->select('COUNT(en.' . $chavePrimaria . ')');
 		
-		$rs = $this->doctrine->em->getRepository("\App\Entity\\" . $Entity)->createQueryBuilder('en');
+		$rs = $this->doctrine->em->getRepository("\App\Models\Entity\\" . $Entity)->createQueryBuilder('en');
 		
 		$lista = [];
 		$cont_campo = 1;
@@ -373,7 +373,7 @@ abstract class BaseController extends Controller
 		$paginacao = new Pagination($pg, $total_registros, $por_pagaina, 5, $baseUrl);
 		$links = $paginacao->criarLinks();
 		
-		return ['lista' => $lista, 'paginacao' => $links, 'total_registros' => $total_registros];
+		return ['lista' => $lista, 'paginacao' => $links, 'total' => $total_registros];
 	}
 	
 	public function filtroPost($classe, &$post)
