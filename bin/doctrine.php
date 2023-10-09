@@ -87,13 +87,13 @@ class Doctrine
 	
 	public static function getConnectionOptions(): array
 	{
-		$configDatabase = new Database();
+		// $configDatabase = new Database();
 		return [
 			'driver'   => 'pdo_mysql',
-			'user'     => $configDatabase->default['username'],
-			'password' => $configDatabase->default['password'],
-			'host'     => $configDatabase->default['hostname'],
-			'dbname'   => $configDatabase->default['database']
+			'user'     => 'root',
+			'password' => '',
+			'host'     => 'localhost',
+			'dbname'   => 'codeigniter_template'
 		];
 	}
 	
